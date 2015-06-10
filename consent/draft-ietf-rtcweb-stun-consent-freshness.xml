@@ -169,8 +169,8 @@
 
       <t>Consent is obtained only by full ICE implementations. An ICE-lite
       agent (as defined in Section 2.7 of <xref target="RFC5245"></xref>) does
-      not generate connectivity checks or run the ICE state machine. An
-      ICE-lite agent does not generate consent checks, it will only respond to
+      not generate connectivity checks or run the ICE state machine. Hence, an
+      ICE-lite agent does not generate consent checks and will only respond to
       any checks that it receives. No changes are required to ICE-lite
       implementations in order to respond to consent checks, as they are
       processed as normal ICE connectivity checks.</t>
