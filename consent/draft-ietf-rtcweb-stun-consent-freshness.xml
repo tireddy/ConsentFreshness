@@ -334,14 +334,16 @@
         an off-path attacker spoofing TCP segments cannot cause a TCP sender
         to send once the consent timer expires (30 seconds).</t>
 
-        <t>An endpoint that is not sending any application data does not need
-        to maintain consent. However, not sending any traffic could cause NAT
-        or firewall mappings to expire. Furthermore, having one peer unable to
-        send is detrimental to many protocols. Absent better information about
-        the network, if an endpoint needs to ensure its NAT or firewall
-        mappings do not expire, it can be done using keepalive or other
-        techniques (see Section 10 of <xref target="RFC5245"></xref> and see
-        <xref target="RFC6263"></xref>).</t>
+        <t>An endpoint that is not sending any application data after
+        obtaining consent does not need to maintain consent. As soon as the
+        endpoint starts sending application data again, consent is maintained
+        following the procedure described in this document. However, not
+        sending any traffic could cause NAT or firewall mappings to expire.
+        Furthermore, having one peer unable to send is detrimental to many
+        protocols. Absent better information about the network, if an endpoint
+        needs to ensure its NAT or firewall mappings do not expire, it can be
+        done using keepalive or other techniques (see Section 10 of <xref
+        target="RFC5245"></xref> and see <xref target="RFC6263"></xref>).</t>
 
         <t>After consent is lost, the same ICE credentials MUST NOT be used on
         the affected 5-tuple again. That means that a new session, or an ICE
