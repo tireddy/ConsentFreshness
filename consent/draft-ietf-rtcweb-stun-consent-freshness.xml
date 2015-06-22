@@ -169,8 +169,8 @@
 
       <t>Consent is obtained only by full ICE implementations. An ICE-lite
       agent (as defined in Section 2.7 of <xref target="RFC5245"></xref>) does
-      not generate connectivity checks or run the ICE state machine. An
-      ICE-lite agent does not generate consent checks, it will only respond to
+      not generate connectivity checks or run the ICE state machine. Hence, an
+      ICE-lite agent does not generate consent checks and will only respond to
       any checks that it receives. No changes are required to ICE-lite
       implementations in order to respond to consent checks, as they are
       processed as normal ICE connectivity checks.</t>
@@ -262,9 +262,9 @@
 
       <section title="Expiration of Consent">
         <t>A full ICE implementation obtains consent to send using ICE. After
-        a successful ICE connectivity check on a particular transport address
-        (i.e., a candidate pair has been marked as Succeeded), consent MUST be
-        maintained following the procedure described in this document.</t>
+        ICE concludes on a particular candidate pair and whenever the ICE
+        agent sends application data on that pair consent MUST be maintained
+        following the procedure described in this document.</t>
 
         <t>An endpoint MUST NOT send data other than the messages used to
         establish consent unless the receiving endpoint has consented to
@@ -334,14 +334,16 @@
         an off-path attacker spoofing TCP segments cannot cause a TCP sender
         to send once the consent timer expires (30 seconds).</t>
 
-        <t>An endpoint that is not sending any application data does not need
-        to maintain consent. However, not sending any traffic could cause NAT
-        or firewall mappings to expire. Furthermore, having one peer unable to
-        send is detrimental to many protocols. Absent better information about
-        the network, if an endpoint needs to ensure its NAT or firewall
-        mappings do not expire, it can be done using keepalive or other
-        techniques (see Section 10 of <xref target="RFC5245"></xref> and see
-        <xref target="RFC6263"></xref>).</t>
+        <t>An endpoint that is not sending any application data after
+        obtaining consent does not need to maintain consent, but the endpoint
+        MUST regain consent before it resumes sending application data.
+        However, not sending any traffic could cause NAT or firewall mappings
+        to expire. Furthermore, having one peer unable to send is detrimental
+        to many protocols. Absent better information about the network, if an
+        endpoint needs to ensure its NAT or firewall mappings do not expire,
+        it can be done using keepalive or other techniques (see Section 10 of
+        <xref target="RFC5245"></xref> and see <xref
+        target="RFC6263"></xref>).</t>
 
         <t>After consent is lost, the same ICE credentials MUST NOT be used on
         the affected 5-tuple again. That means that a new session, or an ICE
